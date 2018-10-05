@@ -1,0 +1,17 @@
+package ExistingUnitIds
+
+public constant STEM_CELL = 'e000'
+public constant T_BODY = 'u004'
+public constant MATURE_T_BODY = 'u00D'
+public constant RED_BLOOD_CELL = 'u00O'
+public constant WHITE_BLOOD_CELL = 'u003'
+public constant ANTI_BODY = 'u008'
+
+public constant TETANUS_BACTERIUM = 'H00E'
+public constant POLIO_VIRUS = 'H00I'
+public constant AUTOIMMUNE_DISORDER = 'H00J'
+
+public constant TET_CRAMPED_CELL = 'u012'
+public constant TET_CRAMPED_CELL2 = 'u00L'
+public constant TET_SPASMIN = 'u006'
+public constant TET_NOLYSIN = 'u00K'

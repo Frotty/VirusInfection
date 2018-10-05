@@ -1,0 +1,8 @@
+package PolioVirus
+import VirusHero
+
+public class PolioHero extends VirusHero
+
+	construct(unit u)
+		super(u)
+

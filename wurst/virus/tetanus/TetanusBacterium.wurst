@@ -1,0 +1,8 @@
+package TetanusBacterium
+import VirusHero
+
+public class TetanusHero extends VirusHero
+
+	construct(unit u)
+		super(u)
+		

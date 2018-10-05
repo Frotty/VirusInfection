@@ -1,0 +1,28 @@
+package CrampedMuscleCell
+import Entity
+import ExistingUnitIds
+import StandardTextTags
+
+public class CrampedMuscleCell extends UnitEntity
+	var lvl = 1
+
+	construct(unit constructed)
+		super(constructed)
+		EventListener.add(actor, EVENT_PLAYER_UNIT_UPGRADE_FINISH) ->
+			lvl++
+			if lvl == 2
+				AddUnitToStock(actor, TET_NOLYSIN, 0, 4)
+
+	override function slowUpdate()
+		super.slowUpdate()
+		if idleSeconds mod 5 == 0
+			let income = lvl * 2
+			owner.addGold(income)
+			createGoldBountyTextTag(actor, income, owner)
+
+init
+	EventListener.add(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH) ->
+		let structure = GetConstructedStructure()
+		switch structure.getTypeId()
+			case TET_CRAMPED_CELL
+				new CrampedMuscleCell(structure)

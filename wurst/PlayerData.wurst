@@ -1,0 +1,54 @@
+package PlayerData
+import Players
+import GameConstants
+
+public constant immunePlayers = new LinkedList<player>
+public constant virusPlayers = new LinkedList<player>
+
+let virusStartLocs = new LinkedList<StartPos>
+let immuneStartLocs = new LinkedList<StartPos>
+
+PlayerData array pData
+
+public function player.getData() returns PlayerData
+	return pData[this.getId()]
+
+class PlayerData
+	player p
+	StartPos startPos
+
+	construct(player p)
+
+class StartPos
+	vec2 pos
+
+	construct(vec2 pos)
+		this.pos = pos
+
+public function initPlayers()
+	for i = 0 to bj_MAX_PLAYER_SLOTS
+		let p = players[i]
+		if p.getController() == MAP_CONTROL_USER
+			if p.isAllyOf(IMMUNE_PLAYER)
+				immuneStartLocs.add(new StartPos(vec2(GetPlayerStartLocationX(p), GetPlayerStartLocationY(p))))
+				if p.getSlotState() == PLAYER_SLOT_STATE_PLAYING
+					pData[i] = new PlayerData(p)
+					immunePlayers.add(p)
+			else if p.isAllyOf(VIRUS_PLAYER)
+				virusStartLocs.add(new StartPos(vec2(GetPlayerStartLocationX(p), GetPlayerStartLocationY(p))))
+				if p.getSlotState() == PLAYER_SLOT_STATE_PLAYING
+					pData[i] = new PlayerData(p)
+					virusPlayers.add(p)
+
+	randomizeStartLocs()
+
+function randomizeStartLocs()
+	virusStartLocs.shuffle()
+
+	virusPlayers.forEach() p ->
+		p.getData().startPos = virusStartLocs.pop()
+	
+	immuneStartLocs.shuffle()
+
+	immunePlayers.forEach() p ->
+		p.getData().startPos = immuneStartLocs.pop()

@@ -1,0 +1,26 @@
+---
+projectName: "VirusInfectionR"
+dependencies:
+- "https://github.com/wurstscript/wurstStdlib2"
+- "https://github.com/Frotty/Frentity"
+buildMapData:
+  name: "JustAnotherWurstMap"
+  fileName: "MyWurstMap"
+  author: "SomeWurstUser"
+  playerCount: 1
+  mapBoundsX: 64
+  mapBoundsY: 64
+  scenarioData:
+    description: "DefaultDescription"
+    suggestedPlayers: "DefaultSuggestedPlayers"
+    loadingScreenTitle: "DefaultTitle"
+    loadingScreenSubTitle: "DefaultSubTitle"
+    loadingScreenText: "DefaultText"
+  optionsFlags:
+    hideMinimapPreview: false
+    maskedAreasPartiallyVisible: true
+    showWavesOnCliffShores: true
+    showWavesOnRollingShores: true
+    useItemClassificationSystem: true
+  forces:
+    forces: []

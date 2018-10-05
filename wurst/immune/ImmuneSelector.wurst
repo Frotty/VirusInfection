@@ -1,0 +1,14 @@
+package ImmuneSelector
+import Selector
+
+@compiletime public function genImmuneSelector() returns SelectorBuilder
+	return new SelectorBuilder()
+		..btn("Experimental Drug")
+			..pos(0, 0)
+			..tooltip("Bob has received some experimental medicine in order to cope with his infections.")
+			..onClick((selector) -> destroy selector)
+		..btn("Drixenol")
+			..pos(1, 0)
+			..tooltip("Drix for short, is a a red and yellow, boxy, and robotic cold pill.")
+			..onClick((selector) -> destroy selector)
+		..build()

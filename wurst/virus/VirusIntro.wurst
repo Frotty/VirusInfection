@@ -1,0 +1,22 @@
+package VirusIntro
+import CineBuilder
+
+public function virusIntro(vec2 startpos) returns Cine
+	return new CineBuilder()
+			..cam(startpos, 0.)
+			..text("|cff911313You are a Virus!\n\n|r" +
+					"    - Gain resources:\n" +
+					"        - |cffffcc00Gold: Harvest from cells (goldmines)|r\n\n" +
+					"    -|cff00d9ffObjectives:|r\n" +
+					"        - Fight together with the other viruses against the immune system\n" +
+					"        - Kill the body by attacking and shutting down vital organs")
+		..after(12.)
+			..cam(startpos, 0.)
+			..text("|cffbd2727First things to do:\n\n|r" +
+					"    - Pick your favourite class\n" +
+					"    - Infect your first cell\n" +
+					"    - Don't trigger an immune response while you're weak\n")
+		..after(8.)
+			..cam(startpos, 0.)
+			..text("Have fun!")
+		.build()

@@ -1,0 +1,14 @@
+package GameConstants
+
+public constant IMMUNE_PLAYER = players[0]
+public constant VIRUS_PLAYER = players[11]
+
+public constant LEFT_HAND = vec2(-9000, -3000)
+public constant LEFT_FOOT = vec2(-4600, -10200)
+public constant RIGHT_FOOT = vec2(-50, -10000)
+public constant RIGHT_HAND = vec2(2400, -2700)
+
+public constant CHECKUP_POINTS = [LEFT_HAND, LEFT_FOOT, RIGHT_FOOT, RIGHT_HAND]
+
+public constant BRAIN = vec2(-3400, 8600)
+public constant HEART = vec2(-2800, 2700)

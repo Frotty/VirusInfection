@@ -1,0 +1,39 @@
+package GameInit
+import ClosureTimers
+import PlayerData
+import VirusSelector
+import LinkedList
+import ImmuneSelector
+import VirusIntro
+import AdaptiveDefense
+import EntityManagement
+
+function initGame()
+	initPlayers()
+	// showIntro()
+	showSelectors()
+	initAdaptiveDefense()
+	startEntityLoop()
+
+function showIntro()
+	virusPlayers.forEach() p ->
+		virusIntro(p.getData().startPos.pos).play(p)
+
+	immunePlayers.forEach() p ->
+		virusIntro(p.getData().startPos.pos).play(p)
+
+
+function showSelectors()
+	let virusSelector = genVirusSelector()
+	let immuneSelector = genImmuneSelector()
+	
+	virusPlayers.forEach() p ->
+		virusSelector.display(p, p.getData().startPos.pos)
+
+	immunePlayers.forEach() p ->
+		immuneSelector.display(p, p.getData().startPos.pos)
+	
+
+init
+	doAfter(0.01) ->
+		initGame()

@@ -1,0 +1,42 @@
+package VirusSelector
+import Selector
+import ExistingUnitIds
+import VirusHero
+import TetanusBacterium
+import PolioVirus
+
+@compiletime public function genVirusSelector() returns SelectorBuilder
+	return new SelectorBuilder()
+		..btn("|cff088C42Tetanus")
+			..pos(0, 0)
+			..tooltip("|cff886913A bacterial infection that causes muscle cramps and spasms.|r\n\n" +
+						"|cff2d3ab6Difficulty: |cff1da04fBeginner|r\n")
+			..icon("BTNTetanus")
+			..onClick((selector) -> pickTetanus(selector))
+		..btn("|cffB5083APolio")
+			..pos(1, 0)
+			..tooltip("|cff886913A virus infection that paralyzes its victims.|r\n\n" +
+						"|cff2d3ab6Difficulty: |cffb0bd03Intermediate|r\n")
+			..icon("BTNpolio")
+			..onClick((selector) -> pickPolio(selector))
+		..btn("|cffff7b31Autoimmune Disorder")
+			..pos(2, 0)
+			..tooltip("|cff886913The bodie's own cells have turned against it and are not attacking the immune system.|r\n\n" +
+						"|cff2d3ab6Difficulty: |cffbd1f03Hard|r\n")
+			..icon("BTNAutoimmune")
+			..onClick((selector) -> pickAutoimmune(selector))
+		..build()
+
+function pickPolio(Selector selector)
+	new PolioHero(createUnit(selector.owner, POLIO_VIRUS, selector.getPos().toVec2(), angle(0)))
+	selector.owner.addGold(350)
+	destroy selector
+
+function pickTetanus(Selector selector)
+	new TetanusHero(createUnit(selector.owner, TETANUS_BACTERIUM, selector.getPos().toVec2(), angle(0)))
+	selector.owner.addGold(400)
+	destroy selector
+
+function pickAutoimmune(Selector selector)
+	new VirusHero(createUnit(selector.owner, AUTOIMMUNE_DISORDER, selector.getPos().toVec2(), angle(0)))
+	destroy selector

@@ -1,0 +1,40 @@
+package ImmuneCells
+import Entity
+import ExistingUnitIds
+import GameConstants
+
+public var tcells = 0
+public var mtcells = 0
+public var wbcells = 0
+
+public class ImmuneCell extends UnitEntity
+	vec2 target
+
+	construct(unit u)
+		super(u)
+		setTarget(CHECKUP_POINTS[GetRandomInt(0, 3)])
+		incCount(1)
+
+	function setTarget(vec2 target)
+		this.target = target
+		actor.issuePointOrder("attack", target)
+
+	override function slowUpdate()
+		super.slowUpdate()
+		if getPos().distanceTo2dSq(target) < (512.).squared()
+			if target == HEART
+				setTarget(CHECKUP_POINTS[GetRandomInt(0, 3)])
+			else
+				setTarget(HEART)
+
+	ondestroy
+		incCount(-1)
+
+	function incCount(int incr)
+		switch actor.getTypeId()
+			case T_BODY
+				tcells+=incr
+			case WHITE_BLOOD_CELL
+				wbcells+=incr
+			case MATURE_T_BODY
+				mtcells+=incr

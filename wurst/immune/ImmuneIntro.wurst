@@ -1,0 +1,23 @@
+package ImmuneIntro
+import CineBuilder
+
+public function immuneIntro(vec2 startpos) returns Cine
+	return new CineBuilder()
+			..cam(startpos, 0.)
+			..text("|cff1248bdYou are the Immune System!\n\n|r" +
+					"    - Gain resources:\n" +
+					"        - |cffffcc00Gold: Build bone marrow on cells (goldmines)|r\n\n" +
+					"    -|cff00d9ffObjectives:|r\n" +
+					"        - Defend the body against the viruses with your allies\n" +
+					"        - Prevent the viruses from taking over vital organs\n" +
+					"        - Eradicate all viruses to win\n")
+		..after(14.)
+			..cam(startpos, 0.)
+			..text("|cff27bd54First things to do:\n\n|r" +
+					"    - Pick your immune hero\n" +
+					"    - Build bone marrow on cells to receive gold\n" +
+					"    - Start fighting the infection\n")
+		..after(10.)
+			..cam(startpos, 0.)
+			..text("Have fun!")
+		.build()

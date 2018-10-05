@@ -1,0 +1,40 @@
+package AdaptiveDefense
+import LinkedList
+import ExistingUnitIds
+import ImmuneCells
+import GameConstants
+import ClosureTimers
+
+var tcellsMax = 6
+var mtcellsMax = 3
+var wbcellsMax = 1
+
+
+let cellSpawnQueue = new LinkedList<int>()
+let tim = CreateTimer()
+
+public function initAdaptiveDefense()
+	requestDefense()
+	tim.start(45., () -> checkSpawn())
+
+function checkSpawn()
+	if cellSpawnQueue.isEmpty()
+		doAfter(45) ->
+			requestDefense()
+			tim.start(1., () -> checkSpawn())
+	else
+		let u = createUnit(IMMUNE_PLAYER, cellSpawnQueue.pop(), HEART, angle(0))
+		new ImmuneCell(u)
+		tim.start(2.5, () -> checkSpawn())
+
+function requestDefense()
+	for i = tcells to tcellsMax
+		cellSpawnQueue.add(T_BODY)
+
+	for i = mtcells to mtcellsMax
+		cellSpawnQueue.add(MATURE_T_BODY)
+
+	for i = wbcells to wbcellsMax
+		cellSpawnQueue.add(WHITE_BLOOD_CELL)
+
+	cellSpawnQueue.shuffle()
