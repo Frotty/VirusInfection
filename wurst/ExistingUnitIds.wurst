@@ -7,7 +7,6 @@ public constant RED_BLOOD_CELL = 'u00O'
 public constant WHITE_BLOOD_CELL = 'u003'
 public constant ANTI_BODY = 'u008'
 
-public constant TETANUS_BACTERIUM = 'H00E'
 public constant POLIO_VIRUS = 'H00I'
 public constant AUTOIMMUNE_DISORDER = 'H00J'
 

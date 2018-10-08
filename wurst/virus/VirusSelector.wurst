@@ -33,7 +33,7 @@ function pickPolio(Selector selector)
 	destroy selector
 
 function pickTetanus(Selector selector)
-	new TetanusHero(createUnit(selector.owner, TETANUS_BACTERIUM, selector.getPos().toVec2(), angle(0)))
+	new TetanusHero(createUnit(selector.owner, TETANUS_HERO_ID, selector.getPos().toVec2(), angle(0)))
 	selector.owner.addGold(400)
 	destroy selector
 

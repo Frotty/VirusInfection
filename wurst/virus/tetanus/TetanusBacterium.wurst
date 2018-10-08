@@ -1,8 +1,18 @@
 package TetanusBacterium
+import public TetanusObjectData
 import VirusHero
+import ClosureTimers
+import InstantDummyCaster
+import Orders
+import Assets
 
 public class TetanusHero extends VirusHero
 
-	construct(unit u)
-		super(u)
-		
+	construct(unit actor)
+		super(actor)
+		EventListener.onPointCast(actor, LOCALIZED_CRAMP_ID) (caster, target) ->
+			let lvl = caster.getAbilityLevel(LOCALIZED_CRAMP_ID)
+			doPeriodicallyCounted(1.25, 2 + lvl) cb ->
+				flashEffect(Objects.undeadBloodAbomination, target)
+				InstantDummyCaster.castImmediate(owner, LOCALIZED_CRAMP_DUMMY_ID, lvl, Orders.creepthunderclap, target)
+

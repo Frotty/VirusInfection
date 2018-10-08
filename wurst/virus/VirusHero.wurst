@@ -1,5 +1,5 @@
 package VirusHero
-import Entity
+import public Entity
 
 public class VirusHero extends UnitEntity
 
