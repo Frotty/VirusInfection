@@ -48,7 +48,5 @@ function randomizeStartLocs()
 	virusPlayers.forEach() p ->
 		p.getData().startPos = virusStartLocs.pop()
 	
-	immuneStartLocs.shuffle()
-
 	immunePlayers.forEach() p ->
 		p.getData().startPos = immuneStartLocs.pop()

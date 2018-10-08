@@ -1,0 +1,9 @@
+package ImmuneHero
+import public Entity
+
+public class ImmuneHero extends UnitEntity
+
+	construct(unit actor)
+		super(actor)
+		owner.select(actor)
+		

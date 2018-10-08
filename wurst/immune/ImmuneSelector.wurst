@@ -1,14 +1,21 @@
 package ImmuneSelector
 import Selector
+import ExperimentalHero
 
 @compiletime public function genImmuneSelector() returns SelectorBuilder
 	return new SelectorBuilder()
 		..btn("Experimental Drug")
 			..pos(0, 0)
 			..tooltip("Bob has received some experimental medicine in order to cope with his infections.")
-			..onClick((selector) -> destroy selector)
+			..icon("BTNSweep")
+			..onClick((selector) -> pickExperiment(selector))
 		..btn("Drixenol")
 			..pos(1, 0)
 			..tooltip("Drix for short, is a a red and yellow, boxy, and robotic cold pill.")
+			..icon("BTNWisp")
 			..onClick((selector) -> destroy selector)
 		..build()
+
+function pickExperiment(Selector selector)
+	new ExperimentalHero(createUnit(selector.owner, EXPERIMENT_HERO_ID, selector.getPos().toVec2(), angle(0)))
+	 destroy selector

@@ -1,0 +1,13 @@
+package ExperimentalHero
+import ImmuneHero
+import ChannelAbilityPreset
+
+public constant EXPERIMENT_HERO_ID = compiletime(HERO_ID_GEN.next())
+
+public class ExperimentalHero extends ImmuneHero
+
+	construct(unit actor)
+		super(actor)
+
+@compiletime function genHero()
+	
