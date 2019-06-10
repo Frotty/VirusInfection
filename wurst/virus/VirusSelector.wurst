@@ -4,6 +4,7 @@ import ExistingUnitIds
 import VirusHero
 import TetanusBacterium
 import PolioVirus
+import AutoImmuneDisease
 
 @compiletime public function genVirusSelector() returns SelectorBuilder
 	return new SelectorBuilder()
@@ -25,6 +26,7 @@ import PolioVirus
 						"|cff2d3ab6Difficulty: |cffbd1f03Hard|r\n")
 			..icon("BTNAutoimmune")
 			..onClick((selector) -> pickAutoimmune(selector))
+		..hideFromOthers()
 		..build()
 
 function pickPolio(Selector selector)
@@ -38,5 +40,5 @@ function pickTetanus(Selector selector)
 	destroy selector
 
 function pickAutoimmune(Selector selector)
-	new VirusHero(createUnit(selector.owner, AUTOIMMUNE_DISORDER, selector.getPos().toVec2(), angle(0)))
+	new AutoImmuneDiseaseHero(createUnit(selector.owner, AUTOIMMUNE_DISORDER, selector.getPos().toVec2(), angle(0)))
 	destroy selector

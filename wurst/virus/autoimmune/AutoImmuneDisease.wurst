@@ -1,0 +1,7 @@
+package AutoImmuneDisease
+import VirusHero
+
+public class AutoImmuneDiseaseHero extends VirusHero
+
+	construct(unit u)
+		super(u)

@@ -1,0 +1,23 @@
+package Commands
+import StringUtils
+import ClosureEvents
+
+init
+	EventListener.add(EVENT_PLAYER_CHAT_FILTER) ->
+		var str = GetEventPlayerChatString()
+		if str.startsWith("-")
+			parseCommand(str)
+
+function parseCommand(string str)
+	let p = GetTriggerPlayer()
+	var args = str.substring(1).split(" ")
+	var cstr = args.get(0)
+	switch cstr
+		case "test"
+			Log.info("Cool")
+
+		default
+			if not (cstr.startsWith("st") or cstr.startsWith("sht") or cstr.startsWith("sc") or cstr.startsWith("sa") or cstr.startsWith("ht"))
+				DisplayTimedTextToPlayer(p, 0., 0., 10,"|cffFFD621[Info]|r - Command not found! Available Commands: None")
+
+	destroy args

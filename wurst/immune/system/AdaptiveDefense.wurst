@@ -9,13 +9,13 @@ var tcellsMax = 6
 var mtcellsMax = 3
 var wbcellsMax = 1
 
-
 let cellSpawnQueue = new LinkedList<int>()
 let tim = CreateTimer()
 
 public function initAdaptiveDefense()
-	requestDefense()
-	tim.start(45., () -> checkSpawn())
+	doAfter(30.) () ->
+		requestDefense()
+		tim.start(45., () -> checkSpawn())
 
 function checkSpawn()
 	if cellSpawnQueue.isEmpty()

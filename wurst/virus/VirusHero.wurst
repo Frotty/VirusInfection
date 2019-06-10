@@ -6,5 +6,4 @@ public class VirusHero extends UnitEntity
 	construct(unit actor)
 		super(actor)
 		owner.select(actor)
-		
 

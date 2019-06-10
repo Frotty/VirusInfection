@@ -18,6 +18,7 @@ class PlayerData
 	StartPos startPos
 
 	construct(player p)
+		this.p = p
 
 class StartPos
 	vec2 pos
@@ -30,7 +31,7 @@ public function initPlayers()
 		let p = players[i]
 		if p.getController() == MAP_CONTROL_USER
 			if p.isAllyOf(IMMUNE_PLAYER)
-				immuneStartLocs.add(new StartPos(vec2(GetPlayerStartLocationX(p), GetPlayerStartLocationY(p))))
+				immuneStartLocs.push(new StartPos(vec2(GetPlayerStartLocationX(p), GetPlayerStartLocationY(p))))
 				if p.getSlotState() == PLAYER_SLOT_STATE_PLAYING
 					pData[i] = new PlayerData(p)
 					immunePlayers.add(p)
@@ -49,4 +50,4 @@ function randomizeStartLocs()
 		p.getData().startPos = virusStartLocs.pop()
 	
 	immunePlayers.forEach() p ->
-		p.getData().startPos = immuneStartLocs.pop()
+		p.getData().startPos = immuneStartLocs.dequeue()

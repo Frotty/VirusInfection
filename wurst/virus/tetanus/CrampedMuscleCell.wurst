@@ -26,3 +26,15 @@ init
 		switch structure.getTypeId()
 			case TET_CRAMPED_CELL
 				new CrampedMuscleCell(structure)
+
+
+interface MyCommonInterface
+
+module A
+	abstract function instance() returns MyCommonInterface
+
+class B implements MyCommonInterface
+	use A
+
+	override function instance() returns MyCommonInterface
+		return new B()

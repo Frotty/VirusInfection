@@ -1,23 +1,24 @@
-package ExperimentalHero
+package Drixenol
 import ImmuneHero
 import ChannelAbilityPreset
 
-public constant EXPERIMENT_HERO_ID = compiletime(HERO_ID_GEN.next())
+
+public constant DRIX_HERO_ID = compiletime(HERO_ID_GEN.next())
+
 public constant SLAM_SPELL_ID = compiletime(ABIL_ID_GEN.next())
 
-public class ExperimentalHero extends ImmuneHero
+public class DrixenolHero extends ImmuneHero
 
 	construct(unit actor)
 		super(actor)
 
 @compiletime function genHero()
-	new HeroDefinition(EXPERIMENT_HERO_ID, 'Hmkg')
+	new HeroDefinition(DRIX_HERO_ID, 'Hmkg')
 	..setName("Experimental Medicine")
 	..setModelFile("war3mapimported\\CrystalGolem.mdx")
-	..setIconGameInterface("BTNWisp")
+	..setIconGameInterface("ReplaceableTextures\\CommandButtons\\BTNWisp.blp")
 	..setUnitSoundSet("wisp")
 	..setHitPointsMaximumBase(100)
 	..setStartingAgility(2)
 	..setStartingStrength(3)
 	..setStartingIntelligence(1)
-	..setHeroAbilities(commaList(SLAM_SPELL_ID))

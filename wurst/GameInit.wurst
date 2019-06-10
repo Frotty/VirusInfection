@@ -2,15 +2,15 @@ package GameInit
 import ClosureTimers
 import PlayerData
 import VirusSelector
-import LinkedList
 import ImmuneSelector
 import VirusIntro
 import AdaptiveDefense
 import EntityManagement
+import ImmuneIntro
 
 function initGame()
 	initPlayers()
-	// showIntro()
+	showIntro()
 	showSelectors()
 	initAdaptiveDefense()
 	startEntityLoop()
@@ -20,7 +20,7 @@ function showIntro()
 		virusIntro(p.getData().startPos.pos).play(p)
 
 	immunePlayers.forEach() p ->
-		virusIntro(p.getData().startPos.pos).play(p)
+		immuneIntro(p.getData().startPos.pos).play(p)
 
 
 function showSelectors()
