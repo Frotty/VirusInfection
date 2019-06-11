@@ -1,0 +1,60 @@
+package BoneMarrow
+import Entity
+import ExistingUnitIds
+import ClosureForGroups
+import Orders
+import ClosureTimers
+
+public var bloodCellLimit = 4
+
+public class BloodCell extends UnitEntity
+	BoneMarrow parent
+
+	construct(BoneMarrow parent)
+		super(createUnit(parent.owner, RED_BLOOD_CELL, parent.pos, angle(0)))
+		this.parent = parent
+		doAfter(0.5) ->
+			findGoldmine()
+
+	function findGoldmine()
+		forNearestUnit(pos.toVec2(), 512, Filter(() -> GetFilterUnit().getTypeId() == NUCLEUS)) u ->
+			Log.info("found target")
+			actor.issueTargetOrderById(OrderIds.smart, u)
+
+	ondestroy
+		parent.removeBloodCell(this)
+
+public class BoneMarrow extends UnitEntity
+	let bloodCells = new LinkedList<BloodCell>
+	CallbackPeriodic checkCallback = null
+
+	construct(unit constructed)
+		super(constructed)
+
+	function enable()
+		doAfter(5.) () ->
+			bloodCells.add(new BloodCell(this))
+		checkCallback = doPeriodically(20.) cb ->
+			checkBloodCells()
+
+	function removeBloodCell(BloodCell bcell)
+		bloodCells.remove(bcell)
+
+	function checkBloodCells()
+		if bloodCells.size() <= bloodCellLimit
+			bloodCells.add(new BloodCell(this))
+
+	ondestroy
+		if checkCallback != null
+			destroy checkCallback
+
+init
+	EventListener.add(EVENT_PLAYER_UNIT_CONSTRUCT_START) () ->
+		let constructing = GetConstructingStructure()
+		if constructing.getTypeId() == BONE_MARROW
+			new BoneMarrow(constructing)
+
+	EventListener.add(EVENT_PLAYER_UNIT_CONSTRUCT_FINISH) () ->
+		let constructed = GetConstructedStructure()
+		if constructed.getTypeId() == BONE_MARROW
+			(constructed.getEntity() castTo BoneMarrow).enable()

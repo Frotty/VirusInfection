@@ -13,9 +13,17 @@ let cellSpawnQueue = new LinkedList<int>()
 let tim = CreateTimer()
 
 public function initAdaptiveDefense()
+	doPeriodically(60 * 5.) cb ->
+		improveDefense()
+
 	doAfter(30.) () ->
 		requestDefense()
 		tim.start(45., () -> checkSpawn())
+
+
+function improveDefense()
+	tcellsMax++
+	mtcellsMax++
 
 function checkSpawn()
 	if cellSpawnQueue.isEmpty()
